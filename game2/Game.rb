@@ -1,4 +1,60 @@
-HANGMAN = %w[part0 part1 part2 part3 part4 part5 part6]
+
+HANGMAN = [
+"----|
+|
+|
+|
+|
+|
+",
+"
+----|
+|   o
+|
+|
+|
+|
+",
+  "
+----|
+|   o
+|   |
+|
+|
+|
+",
+  "
+----|
+|   o
+|   |\\
+|
+|
+|
+",
+  "
+----|
+|   o
+|  /|\\
+|
+|
+|
+",
+  "
+----|
+|   o
+|  /|\\
+|    \\
+|
+|
+",
+  "
+----|
+|   o
+|  /|\\
+|  / \\
+|
+|"
+]
 
 max_wrong_choices = HANGMAN.length
 WORDS = %w[autumn cat]
@@ -10,7 +66,7 @@ wrong_choices = 0
 used_letters = []
 
 while wrong_choices < max_wrong_choices && visible_word != word
-  puts(HANGMAN[0 .. wrong_choices])
+  puts(HANGMAN[wrong_choices])
 
   puts("Used letters:")
   puts(used_letters.to_s)
@@ -21,7 +77,7 @@ while wrong_choices < max_wrong_choices && visible_word != word
   user_answer = STDIN.gets.chomp
 
   while used_letters.include?(user_answer)
-    puts("Enter letter again")
+    puts("The letter already used. Enter letter again")
     user_answer = STDIN.gets.chomp
   end
 
@@ -46,7 +102,7 @@ while wrong_choices < max_wrong_choices && visible_word != word
 end
 
 if wrong_choices == max_wrong_choices
-  puts("You were hanged")
+  puts("You were hanged. Word: ")
   puts(word)
 elsif
   puts("You won")
