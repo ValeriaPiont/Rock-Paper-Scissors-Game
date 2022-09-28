@@ -1,12 +1,10 @@
 
-require_relative 'calculator.rb'
-require_relative 'errors/unsupportedOperationError'
-
-ALLOWED_OPERATIONS = %w[+ - * /]
+require_relative 'calculator'
+require_relative 'errors/error'
 
 def process_to_int(number)
   unless is_integer?(number)
-    raise ArgumentError.new "argument isn't integer #{number}"
+    raise ArgumentError.new "#{number} isn't integer"
   end
   number.to_i
 end
@@ -20,7 +18,7 @@ begin
   first_number = process_to_int(gets.chomp)
   puts("Enter second number: ")
   second_number = process_to_int(gets.chomp)
-  puts "Enter operation, allowed: + - * /"
+  puts "Enter operation: + - * /"
   operation = gets.chomp
 
   result = Calculator.calculate(first_number, second_number, operation)
