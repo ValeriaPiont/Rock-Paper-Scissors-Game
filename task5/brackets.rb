@@ -6,7 +6,7 @@ BRACKETS = { '(' => ')',
 OPENED_BRACKETS = BRACKETS.keys
 CLOSED_BRACKETS = BRACKETS.values
 
-def valid?(input)
+def balanced?(input)
   stack = []
   input.each_char do |symbol|
     if CLOSED_BRACKETS.include?(symbol)
@@ -22,7 +22,7 @@ def valid?(input)
   stack.empty?
 end
 
-def bracket_exists?(symbol)
+def bracket_valid?(symbol)
    (OPENED_BRACKETS.include? symbol) || (CLOSED_BRACKETS.include? symbol)
 end
 
@@ -34,8 +34,8 @@ while true
   if exit_string.eql?(user_input)
     break
   end
-  if bracket_exists?(user_input)
-    result = valid?(string.concat(user_input))
+  if bracket_valid?(user_input)
+    result = balanced?(string.concat(user_input))
     puts result ? "valid" : "invalid"
   else
     puts "Unknown symbol"
