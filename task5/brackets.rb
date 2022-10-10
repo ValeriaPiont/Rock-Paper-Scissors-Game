@@ -22,11 +22,24 @@ def valid?(input)
   stack.empty?
 end
 
+def bracket_exists?(symbol)
+   (OPENED_BRACKETS.include? symbol) || (CLOSED_BRACKETS.include? symbol)
+end
+
 string = ""
+exit_string = "exit"
 while true
   puts "Enter bracket:"
   user_input = STDIN.gets.chomp
-  result = valid?(string.concat(user_input))
-  puts result ? "valid" : "invalid"
+  if exit_string.eql?(user_input)
+    break
+  end
+  if bracket_exists?(user_input)
+    result = valid?(string.concat(user_input))
+    puts result ? "valid" : "invalid"
+  else
+    puts "Unknown symbol"
+    puts "Type 'exit' and press Enter to exit"
+  end
   puts "Current string: " + string
 end
