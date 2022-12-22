@@ -24,10 +24,13 @@ class Tree
     current = @root
 
     loop do
+      # якщо значення вже є у дереві, воно не буде додано
       if current == value
         return
+        # якщо значення меньше поточного, йдемо у ліву сторону
       elsif current > value
         next_node = current.left
+        # якщо більше - у праву
       else
         next_node = current.right
       end
@@ -37,6 +40,7 @@ class Tree
       current = next_node
     end
 
+    # коли знайдено останній вузол, додаємо значення
     if current > value
       current.left = Node.new(value = value)
     else
